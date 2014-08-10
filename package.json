@@ -14,17 +14,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:beeva-pabloantoniovaliente/websockets-stdin.git"
+    "url": "git@github.com:rekkeb/websockets-stdin.git"
   },
   "keywords": [
     "websocket",
     "stdin",
     "broadcast"
   ],
-  "author": "Pablo Valiente",
+  "author": "Rekkeb",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/beeva-pabloantoniovaliente/websockets-stdin/issues"
+    "url": "https://github.com/rekkeb/websockets-stdin/issues"
   },
-  "homepage": "https://github.com/beeva-pabloantoniovaliente/websockets-stdin"
+  "homepage": "https://github.com/rekkeb/websockets-stdin"
 }
