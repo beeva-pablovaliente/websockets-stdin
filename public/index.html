@@ -32,7 +32,15 @@
 				
 				// Display messages received from the server 
 				socket.addEventListener("message", function(event) {
-					message.textContent = "Server Says: " + event.data; 
+					//message.textContent = "Server Says: " + event.data;
+					var d = new Date();
+					var timestamp = d.getHours() +':'+ d.getMinutes() +':'+ d.getSeconds() +' - '+d.getUTCDate()+'/'+(1+d.getUTCMonth())+'/'+d.getFullYear();
+
+					var para = document.createElement("p");
+					var node = document.createTextNode("Server Says ("+timestamp+"): " + event.data);
+					para.appendChild(node);
+
+					message.appendChild(para);
 				});
 				
 				// Display any errors that occur 
@@ -57,7 +65,8 @@
 			// Send text to the server when the Send button is clicked 
 			send.addEventListener("click", function(event) {
 				socket.send(text.value);
-				text.value = ""; });
+				text.value = ""; 
+			});
 		}); 
 	</script>
 </head> 
