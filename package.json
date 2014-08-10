@@ -1,0 +1,30 @@
+{
+  "name": "websockets-stdin",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "~4.8.2",
+    "http": "~0.0.0",
+    "ws": "~0.4.32"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:beeva-pabloantoniovaliente/websockets-stdin.git"
+  },
+  "keywords": [
+    "websocket",
+    "stdin",
+    "broadcast"
+  ],
+  "author": "Pablo Valiente",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/beeva-pabloantoniovaliente/websockets-stdin/issues"
+  },
+  "homepage": "https://github.com/beeva-pabloantoniovaliente/websockets-stdin"
+}
