@@ -34,38 +34,28 @@ wss.broadcast = function(data) {
 
 //Client connection
 wss.on('connection', function(ws) {
+    var _self = this;
+
+    console.log('New client connected. Clients connected: %s', _self.clients.length);
 
     ws.on('message', function(message) {
-        console.log('received: %s', message);
+        console.log('Message Received: %s', message);
     });
-    
-    //var id = setInterval(function() {
-    //	ws.send(JSON.stringify(process.memoryUsage()), function() { /* ignore errors */ });
-  	//}, 100);
-  	
-	//clients[clients.length] = ws;
 
-  	//console.log('started client interval');
+  	ws.on('close', function() {
+      console.log('Client disconnected. Still connected: %s clients', _self.clients.length);
+  	});
 
-  	//ws.on('close', function() {
-    //	console.log('stopping client interval');
-    //	clearInterval(id);
-  	//});
 });
 
 process.stdin.on("data", function(data) {
 
-	/*var index = 0;
-	console.log("Client's " + clients.length);
-	for (index = 0; index < clients.length; index++){
-		console.log("Client: "+ clients[index]);
-		clients[index].send(data, function(error){console.log('<<<<'+error);});
-	}*/
+  //Calling broadcast function
   wss.broadcast(data);
 
 	//process.stdin.pause(); 
 });
 
-console.log("WebServer started on port: " + port);
+console.log("WebSocketServer started on port: " + port);
 process.stdin.setEncoding("utf8");
 process.stdin.resume();
