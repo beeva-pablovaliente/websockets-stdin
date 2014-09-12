@@ -2,8 +2,8 @@ var WebSocketServer = require('ws').Server
   , http = require('http')
   , express = require('express')
   , app = express()
-  , port = 8081;
-  //, clients = []
+  , port = 8081
+  , clients = []
   ;
 
 
@@ -24,26 +24,34 @@ app.use(express.static(__dirname + '/public'));
 var server = http.createServer(app);
 server.listen(port);
 
-var wss = new WebSocketServer({server: server});
+var wss = new WebSocketServer({server: server, clientTracking : false});
 
 //Broadcasting
 wss.broadcast = function(data) {
-    for(var i in this.clients)
-        this.clients[i].send(data);
+    for(var i in clients)
+        clients[i].send(data);
 };
 
 //Client connection
 wss.on('connection', function(ws) {
     var _self = this;
 
-    console.log('New client connected. Clients connected: %s', _self.clients.length);
+    //Add the new client
+    clients.push(ws);
+
+    console.log('New client connected. Clients connected: %s', clients.length);
 
     ws.on('message', function(message) {
         console.log('Message Received: %s', message);
     });
 
   	ws.on('close', function() {
-      console.log('Client disconnected. Still connected: %s clients', _self.clients.length);
+        //Remove the client from the store
+        var index = clients.indexOf(ws);
+            if (index != -1) {
+                clients.splice(index, 1);
+            }
+        console.log('Client disconnected. Still connected: %s clients', clients.length);
   	});
 
 });
