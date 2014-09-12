@@ -37,12 +37,13 @@ wss.on('connection', function(ws) {
     var _self = this;
 
     //Add the new client
+    ws._id = clients.length;
     clients.push(ws);
 
     console.log('New client connected. Clients connected: %s', clients.length);
 
     ws.on('message', function(message) {
-        console.log('Message Received: %s', message);
+        console.log('Message Received: %s', message + '. From: '+ws._id);
     });
 
   	ws.on('close', function() {
@@ -51,7 +52,7 @@ wss.on('connection', function(ws) {
             if (index != -1) {
                 clients.splice(index, 1);
             }
-        console.log('Client disconnected. Still connected: %s clients', clients.length);
+        console.log('Client ' +ws._id+ ' disconnected. Still connected: %s clients', clients.length);
   	});
 
 });
